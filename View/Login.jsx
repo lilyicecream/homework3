@@ -1,10 +1,12 @@
 import React, { useState } from "react";
 import axios from "axios";
+import { useUser } from './UserContext';
 
 export const Login = (props) => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
+    const { setUser } = useUser();
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -20,6 +22,7 @@ export const Login = (props) => {
 
             console.log(response.data);
             if (response.data.message === 'Login successful') {
+                setUser(response.data.user);
                 console.log('Login successful');
                 props.onLogin();
             } else if (response.data.error === 'Password does not match') {
