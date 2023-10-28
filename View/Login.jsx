@@ -1,0 +1,61 @@
+import React, { useState } from "react";
+import axios from "axios";
+
+export const Login = (props) => {
+    const [username, setUsername] = useState('');
+    const [password, setPassword] = useState('');
+    const [error, setError] = useState('');
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        try {
+            const response = await axios.post(
+                'http://localhost/hw-test/Controller/RestApi/Login/login.php',
+                {
+                    username,
+                    password,
+                    login: 'login', // Add a parameter to indicate login action
+                }
+            );
+
+            console.log(response.data);
+            if (response.data.message === 'Login successful') {
+                console.log('Login successful');
+                props.onLogin();
+            } else if (response.data.error === 'Password does not match') {
+                setError('Password does not match');
+            } else if (response.data.error === 'Username does not exist') {
+                setError('Username does not exist');
+            } else {
+                setError('An error occurred');
+            }
+        } catch (error) {
+            console.error('Error sending login request:', error);
+            setError('An error occurred');
+        }
+    }
+
+    return (
+        <>
+            <form onSubmit={handleSubmit}>
+                <div className="form-group">
+                    <label htmlFor="username">Enter Username:
+                        <input type="text" name="username" id="username" value={username} onChange={(e) => setUsername(e.target.value)} />
+                    </label>
+                </div>
+                <div className="form-group">
+                    <label htmlFor="password">Enter Password:
+                        <input type="password" name="password" id="password" value={password} onChange={(e) => setPassword(e.target.value)} />
+                    </label>
+                </div>
+                <div className="form-btn">
+                    <input type="submit" value="Login" name="login" />
+                </div>
+            </form>
+            {error && <div className="error">{error}</div>}
+            <button onClick={() => props.onFormSwitch('register')}>Don't have an account? Register here</button>
+        </>
+    );
+};
+
+export default Login;
