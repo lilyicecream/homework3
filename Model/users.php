@@ -71,28 +71,5 @@
         }
 
 
-        // UPDATE
-        // public function updateEmployee(){
-        //     $this->name=htmlspecialchars(strip_tags($this->name));
-        //     $this->email=htmlspecialchars(strip_tags($this->email));
-        //     $this->designation=htmlspecialchars(strip_tags($this->designation));
-        //     $this->created=htmlspecialchars(strip_tags($this->created));
-        //     $this->id=htmlspecialchars(strip_tags($this->id));
-
-        //     $sqlQuery = "UPDATE ". $this->db_table ." SET 
-        //                     name = '".$this->name."',
-        //                     email = '".$this->email."',
-        //                     designation = '".$this->designation."',created = '".$this->created."'
-        //                     WHERE id = ".$this->id;
-
-        //     $this->db->query($sqlQuery);
-
-        //     if($this->db->affected_rows > 0){
-        //         return true;
-        //     }
-
-        //     return false;
-        //     }
-
     }
 ?>

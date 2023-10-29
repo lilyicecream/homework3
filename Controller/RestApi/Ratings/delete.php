@@ -11,16 +11,16 @@
     header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With");
     
     include_once '../../../Model/database.php';
-    include_once '../../../Model/users.php';
+    include_once '../../../Model/ratings.php';
 
     $database = new Database();
     $db = $database->getConnection();
-    $item = new Users($db);
+    $item = new Ratings($db);
 
     $item->username = isset($_GET['username']) ? $_GET['username'] : die();
 
-    if ($item->deleteUser()) {
-        echo json_encode(array("message" => "Employee deleted."));
+    if ($item->deleteRating()) {
+        echo json_encode(array("message" => "Rating deleted."));
     } else {
         echo json_encode(array("message" => "Data could not be deleted"));
     }

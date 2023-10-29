@@ -7,7 +7,7 @@ const DataDisplay = () => {
     const { user } = useUser();
 
     useEffect(() => {
-        axios.get('http://localhost/homework3/Controller/RestApi/User/read.php')
+        axios.get('http://localhost/hw-test/Controller/RestApi/User/read.php')
             .then((response) => {
                 setData(response.data.body || []);
             })
