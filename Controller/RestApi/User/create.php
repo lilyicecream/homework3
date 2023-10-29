@@ -18,8 +18,8 @@
     $item->password = $_GET['password'];
 
     if($item->createEmployee()){
-        echo 'Employee created successfully.';
+        echo 'User created successfully.';
     } else{
-        echo 'Employee could not be created.';
+        echo 'User could not be created.';
     }
 ?>

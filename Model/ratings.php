@@ -28,7 +28,7 @@
 
         // GET ALL
         public function getRatings(){
-            $sqlQuery = "SELECT username, artist, song, rating FROM " . $this->db_table . "";
+            $sqlQuery = "SELECT username, artist, song, rating FROM " . $this->db_table2 . "";
             $this->result = $this->db->query($sqlQuery);
             return $this->result;
         }
@@ -60,9 +60,9 @@
 
 
         // DELETE
-        function deleteEmployee() {
+        function deleteRating() {
             $username = $this->db->real_escape_string($this->username); // Sanitize the input
-            $sqlQuery = "DELETE FROM " . $this->db_table . " WHERE username = '" . $username . "'";
+            $sqlQuery = "DELETE FROM " . $this->db_table2 . " WHERE username = '" . $username . "'";
             $this->db->query($sqlQuery);
 
             if ($this->db->affected_rows > 0) {
@@ -72,7 +72,8 @@
             return false;
         }
 
-        public function getSingleEmployee(){
+
+        public function getSingleUser(){
             $username = $this->db->real_escape_string($this->username);  // Sanitize the input
             $sqlQuery = "SELECT id, username FROM " . $this->db_table2 . " WHERE username = '$username'";
             $record = $this->db->query($sqlQuery);
@@ -82,40 +83,29 @@
         }
         
 
+                // UPDATE
+        public function updateRating(){
+            $this->username = htmlspecialchars(strip_tags($this->username));
+            $this->artist = htmlspecialchars(strip_tags($this->artist));
+            $this->song = htmlspecialchars(strip_tags($this->song));
+            $this->rating = (int)$this->rating; // Ensure rating is an integer
 
-        // public function getSingleEmployee(){
-        //     $sqlQuery = "SELECT id, name, email, designation, created 
-        //                 FROM ". $this->db_table ." WHERE id = ".$this->id;
-        //     $record = $this->db->query($sqlQuery);
-        //     $dataRow=$record->fetch_assoc();
-        //     $this->name = $dataRow['name'];
-        //     $this->email = $dataRow['email'];
-        //     $this->designation = $dataRow['designation'];
-        //     $this->created = $dataRow['created'];
-        // }
-        
-        // UPDATE
-        // public function updateEmployee(){
-        //     $this->name=htmlspecialchars(strip_tags($this->name));
-        //     $this->email=htmlspecialchars(strip_tags($this->email));
-        //     $this->designation=htmlspecialchars(strip_tags($this->designation));
-        //     $this->created=htmlspecialchars(strip_tags($this->created));
-        //     $this->id=htmlspecialchars(strip_tags($this->id));
+            $sqlQuery = "UPDATE ". $this->db_table2 ." SET 
+                        username = '".$this->username."',
+                        artist = '".$this->artist."',
+                        song = '".$this->song."',
+                        rating = '".$this->rating."'
+                        WHERE username = '".$this->username."'";
 
-        //     $sqlQuery = "UPDATE ". $this->db_table ." SET 
-        //                     name = '".$this->name."',
-        //                     email = '".$this->email."',
-        //                     designation = '".$this->designation."',created = '".$this->created."'
-        //                     WHERE id = ".$this->id;
+            $this->db->query($sqlQuery);
 
-        //     $this->db->query($sqlQuery);
+            if($this->db->affected_rows > 0){
+                return true;
+            }
 
-        //     if($this->db->affected_rows > 0){
-        //         return true;
-        //     }
+            return false;
+            }
 
-        //     return false;
-        //     }
 
     }
 ?>
