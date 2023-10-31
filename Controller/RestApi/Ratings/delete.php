@@ -17,7 +17,7 @@ header("Access-Control-Allow-Methods: POST, DELETE");
     $db = $database->getConnection();
     $item = new Ratings($db);
 
-    $item->song = isset($_GET['song']) ? $_GET['song'] : die();
+    $item->song = isset($_GET['song']) ? $_GET['song'] : die("Song parameter is missing.");
 
 
     if ($item->deleteRating()) {
