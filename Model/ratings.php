@@ -28,7 +28,7 @@
 
         // GET ALL
         public function getRatings(){
-            $sqlQuery = "SELECT username, artist, song, rating FROM " . $this->db_table2 . "";
+            $sqlQuery = "SELECT id, username, artist, song, rating FROM " . $this->db_table2 . "";
             $this->result = $this->db->query($sqlQuery);
             return $this->result;
         }
@@ -61,8 +61,8 @@
 
         // DELETE
         function deleteRating() {
-            $username = $this->db->real_escape_string($this->username); // Sanitize the input
-            $sqlQuery = "DELETE FROM " . $this->db_table2 . " WHERE username = '" . $username . "'";
+            $song = $this->db->real_escape_string($this->song); // Sanitize the input
+            $sqlQuery = "DELETE FROM " . $this->db_table2 . " WHERE song = '" . $song . "'";
             $this->db->query($sqlQuery);
 
             if ($this->db->affected_rows > 0) {
