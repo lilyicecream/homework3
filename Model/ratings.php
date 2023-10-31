@@ -91,11 +91,10 @@
             $this->rating = (int)$this->rating; // Ensure rating is an integer
 
             $sqlQuery = "UPDATE ". $this->db_table2 ." SET 
-                        username = '".$this->username."',
                         artist = '".$this->artist."',
                         song = '".$this->song."',
                         rating = '".$this->rating."'
-                        WHERE username = '".$this->username."'";
+                        WHERE id = '".$this->id."'";
 
             $this->db->query($sqlQuery);
 
