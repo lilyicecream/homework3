@@ -4,8 +4,7 @@ import { useUser } from './UserContext';
 import UpdateComponent from './UpdateComponent';
 import DeleteComponent from './DeleteComponent';
 
-const DataDisplay = () => {
-    const [data, setData] = useState([]);
+const DataDisplay = ({ songs, setSongs }) => { // Get songs and setSongs from props
     const { user } = useUser();
 
     const [mode, setMode] = useState('display'); // Can be 'display', 'update', or 'delete'
@@ -19,25 +18,19 @@ const DataDisplay = () => {
             song: songUpdate.song,
             rating: songUpdate.rating,
         });
-        const updatedData = [...data];
-        const updatedSongIndex = updatedData.findIndex(item => item.id === songId);
-        updatedData[updatedSongIndex] = { ...songUpdate, id: songId, username: user }; // include id and username
-        setData(updatedData);
+        // After the update, fetch the data again to refresh the list
+        const res = await axios.get(`http://localhost/homework3/Controller/RestApi/Ratings/Read_ratings.php`);
+        setSongs(res.data.body || []) // update songs list
         setMode('display');
-
-        // const updatedData = [...data];
-        // const updatedSongIndex = updatedData.findIndex(item => item.id === songId);
-        // updatedData[updatedSongIndex] = songUpdate;
-        // setData(updatedData);
-        // setMode('display');
     }
 
     const deleteSong = async (song) => {
         await axios.delete(`http://localhost/homework3/Controller/RestApi/Ratings/delete.php?song=${song}`);
-        setData(data.filter(item => item.song !== song));
+        // After the delete, fetch the data again to refresh the list
+        const res = await axios.get(`http://localhost/homework3/Controller/RestApi/Ratings/Read_ratings.php`);
+        setSongs(res.data.body || []) // update songs list
         setMode('display');
     }
-
 
     const handleUpdate = (song) => {
         setSelectedSong(song);
@@ -48,20 +41,6 @@ const DataDisplay = () => {
         setSelectedSong(song);
         setMode('delete');
     }
-
-
-    useEffect(() => {
-        axios.get('http://localhost/homework3/Controller/RestApi/Ratings/Read_ratings.php')
-            .then((response) => {
-                console.log(response.data);
-                setData(response.data.body || []);
-            })
-            .catch((error) => {
-                console.error('Error fetching data:', error);
-                setData([]);
-            });
-
-    }, []);
 
     return (
         <div>
@@ -82,7 +61,7 @@ const DataDisplay = () => {
                 </thead>
                 <tbody>
                     {mode === 'display' ?
-                        data?.map((item, index) => (
+                        songs?.map((item, index) => (
                             <tr key={index}>
                                 <td>{item.id}</td>
                                 <td>{item.username}</td>

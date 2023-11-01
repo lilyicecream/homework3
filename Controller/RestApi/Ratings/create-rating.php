@@ -13,12 +13,12 @@
     $db = $database->getConnection();
     $item = new Ratings($db);
 
+    $data = json_decode(file_get_contents("php://input"));
 
-    $item->username = $_GET['username'];
-    $item->artist = $_GET['artist'];
-    $item->song = $_GET['song'];
-    $item->rating = $_GET['rating'];
-
+    $item->username = $data->username;
+    $item->artist = $data->artist;
+    $item->song = $data->song;
+    $item->rating = $data->rating;
 
     if($item->createRating()){
         echo 'Rating created successfully.';
