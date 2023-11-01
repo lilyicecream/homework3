@@ -1,64 +1,58 @@
-import React, { useState } from "react";
-import axios from "axios";
-import { useUser } from './UserContext';
+import React from 'react';
 
-export const Login = (props) => {
-    const [username, setUsername] = useState('');
-    const [password, setPassword] = useState('');
-    const [error, setError] = useState('');
-    const { setUser } = useUser();
+const Login = ({ onFormSwitch, onLogin }) => {
+  const buttonStyle = {
+    backgroundColor: '#ff0000', // Red background
+    color: '#fff',
+    fontFamily: 'Times New Roman, Times, serif',
+  };
 
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-        try {
-            const response = await axios.post(
-                'http://localhost/hw-test/Controller/RestApi/Login/login.php',
-                {
-                    username,
-                    password,
-                    login: 'login', // Add a parameter to indicate login action
-                }
-            );
+  const registerButtonStyle = {
+    ...buttonStyle,
+    marginLeft: '10px',
+  };
 
-            console.log(response.data);
-            if (response.data.message === 'Login successful') {
-                setUser(response.data.user);
-                console.log('Login successful');
-                props.onLogin();
-            } else if (response.data.error === 'Password does not match') {
-                setError('Password does not match');
-            } else if (response.data.error === 'Username does not exist') {
-                setError('Username does not exist');
-            } else {
-                setError('An error occurred');
-            }
-        } catch (error) {
-            console.error('Error sending login request:', error);
-            setError('An error occurred');
-        }
-    }
+  const containerStyle = {
+    border: '10px solid #ff0000', // Spiky red border
+    padding: '20px', // Add some padding inside the border for spacing
+    textAlign: 'center', // Center-align content within the border
+  };
 
-    return (
-        <>
-            <form onSubmit={handleSubmit}>
-                <div className="form-group">
-                    <label htmlFor="username">Enter Username:
-                        <input type="text" name="username" id="username" value={username} onChange={(e) => setUsername(e.target.value)} />
-                    </label>
-                </div>
-                <div className="form-group">
-                    <label htmlFor="password">Enter Password:
-                        <input type="password" name="password" id="password" value={password} onChange={(e) => setPassword(e.target.value)} />
-                    </label>
-                </div>
-                <div className="form-btn">
-                    <input type="submit" value="Login" name="login" />
-                </div>
-            </form>
-            {error && <div className="error">{error}</div>}
-            <button onClick={() => props.onFormSwitch('register')}>Don't have an account? Register here</button>
-        </>
-    );
+  const titleStyle = {
+    fontFamily: 'Times New Roman, Times, serif',
+    fontSize: '2rem', // Adjust the font size as needed
+  };
+
+  return (
+    <div style={containerStyle} className="login-container">
+      <h2 style={titleStyle}>HARDCORE RATINGS</h2>
+      <h2 style={{ fontFamily: 'Times New Roman, Times, serif' }}>Login</h2>
+      <div className="input-container">
+        <input type="text" style={{ fontFamily: 'Times New Roman, Times, serif' }} placeholder="Username" />
+        <input type="password" style={{ fontFamily: 'Times New Roman, Times, serif' }} placeholder="Password" />
+      </div>
+      <button className="button" onClick={onLogin} style={buttonStyle}>
+        Login
+      </button>
+      <button className="button" onClick={() => onFormSwitch('register')} style={registerButtonStyle}>
+        Register
+      </button>
+    </div>
+  );
 };
 
 export default Login;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
