@@ -1,3 +1,63 @@
+/* Reset default styles */
+body {
+  margin: 0;
+  padding: 0;
+}
 
+/* Create a darker background and change text color */
+.App {
+  background-color: #000;
+  color: #fff;
+  font-family: 'Metal Lord', sans-serif; /* Replace 'Metal Lord' with your chosen hardcore font */
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Style the title with a larger font and custom font */
+.title {
+  font-size: 2rem;
+  font-weight: bold;
+  font-family: 'Metal Lord', sans-serif; /* Replace 'Metal Lord' with your chosen hardcore font */
+}
+
+/* Define common button styles */
+.button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background-color 0.3s;
+  font-family: 'Metal Lord', sans-serif; /* Replace 'Metal Lord' with your chosen hardcore font */
+}
+
+/* Style the logout button */
+.logout-button {
+  background-color: #ff0000;
+  color: #fff;
+}
+
+.logout-button:hover {
+  background-color: #990000;
+  text-transform: uppercase;
+}
+
+/* Style the create */
+.create-button {
+  background-color: #0078d4;
+  color: #fff;
+}
+
+.create-button:hover {
+  background-color: #0059a1;
+  text-transform: uppercase;
+}
+
+.App-link:hover {
+  color: #ff4400;
+}
 
 
