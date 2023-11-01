@@ -8,6 +8,7 @@
     include_once '../../../Model/database.php';
     include_once '../../../Model/ratings.php';
 
+
     $database = new Database();
     $db = $database->getConnection();
 
