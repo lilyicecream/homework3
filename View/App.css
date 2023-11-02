@@ -1,63 +1,33 @@
-/* Reset default styles */
-body {
-  margin: 0;
-  padding: 0;
+.App {
+  text-align: center;
+  font-family: 'Times New Roman, Times, serif';
+  background-color: #282c34;
+  color: white;
+  min-height: 100vh;
+  border: 3px solid red; /* Add a red border around all text within .App */
 }
 
-/* Create a darker background and change text color */
-.App {
-  background-color: #000;
+.title {
+  font-size: 2rem;
+  border: 3px solid red; /* Add a red border around the title text */
+}
+
+.button {
+  background-color: #ff0000;
   color: #fff;
-  font-family: 'Metal Lord', sans-serif; /* Replace 'Metal Lord' with your chosen hardcore font */
-  min-height: 100vh;
+  padding: 10px 20px;
+  border: none;
+  cursor: pointer;
+}
+
+.logout-button {
+  margin: 10px 0;
+}
+
+.auth-form {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
 }
 
-/* Style the title with a larger font and custom font */
-.title {
-  font-size: 2rem;
-  font-weight: bold;
-  font-family: 'Metal Lord', sans-serif; /* Replace 'Metal Lord' with your chosen hardcore font */
-}
-
-/* Define common button styles */
-.button {
-  padding: 10px 20px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  font-size: 1rem;
-  transition: background-color 0.3s;
-  font-family: 'Metal Lord', sans-serif; /* Replace 'Metal Lord' with your chosen hardcore font */
-}
-
-/* Style the logout button */
-.logout-button {
-  background-color: #ff0000;
-  color: #fff;
-}
-
-.logout-button:hover {
-  background-color: #990000;
-  text-transform: uppercase;
-}
-
-/* Style the create */
-.create-button {
-  background-color: #0078d4;
-  color: #fff;
-}
-
-.create-button:hover {
-  background-color: #0059a1;
-  text-transform: uppercase;
-}
-
-.App-link:hover {
-  color: #ff4400;
-}
-
-
+/* Add any additional styles here */
