@@ -1,15 +1,18 @@
 App {
+
   text-align: center;
   font-family: 'Times New Roman, Times, serif';
   background-color: #282c34;
   color: white;
   min-height: 100vh;
-  border: 3px solid red; /* Add a red border around all text within .App */
+  border: 3px solid red;
+  /* Add a red border around all text within .App */
 }
 
 .title {
   font-size: 2rem;
-  border: 3px solid red; /* Add a red border around the title text */
+  border: 3px solid red;
+  /* Add a red border around the title text */
 }
 
 .button {
