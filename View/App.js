@@ -6,8 +6,6 @@ import Register from './Registration';
 import SongRatingForm from './SongRatingForm';
 import Login from './Login';
 
-import './App.css';
-
 function App() {
   const [currentForm, setCurrentForm] = useState('login');
   const [loggedIn, setLoggedIn] = useState(false);
@@ -45,7 +43,7 @@ function App() {
           <div className="data-and-form">
             <DataDisplay songs={songs} setSongs={setSongs} />
             <SongRatingForm setSongs={setSongs} songs={songs} />
-            <button onClick={handleLogout} className="logout-button">Logout</button>
+            <button onClick={handleLogout} className="button logout-button">Logout</button>
           </div>
         ) : (
           <div className="auth-form">
@@ -62,8 +60,3 @@ function App() {
 }
 
 export default App;
-
-
-
-
-
