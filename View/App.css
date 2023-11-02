@@ -1,1 +1,37 @@
+<<<<<<< HEAD
   
+=======
+.App {
+  text-align: center;
+  font-family: 'Times New Roman, Times, serif';
+  background-color: #282c34;
+  color: white;
+  min-height: 100vh;
+  border: 3px solid red; /* Add a red border around all text within .App */
+}
+
+.title {
+  font-size: 2rem;
+  border: 3px solid red; /* Add a red border around the title text */
+}
+
+.button {
+  background-color: #ff0000;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  cursor: pointer;
+}
+
+.logout-button {
+  margin: 10px 0;
+}
+
+.auth-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Add any additional styles here */
+>>>>>>> refs/remotes/origin/main
